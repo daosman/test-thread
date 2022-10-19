@@ -4,17 +4,16 @@ metadata:
   name: test-thread
   namespace: test-thread
 spec:
-# runtimeClassName: performance-openshift-node-performance-profile
   restartPolicy: Always
   containers:
   - name: test-thread
     image: quay.io/dosman/test-thread
-#   command: ["sleep", "infinity"]
+    command: ["/usr/local/bin/test-thread"]
     args: []
-    imagePullPolicy: Always #IfNotPresent #
+    imagePullPolicy: Always
+    restartPolicy: Never
     securityContext:
-      runAsUser: 0
-#     allowPrivilegeEscalation: false
+#     runAsUser: 0
       readOnlyRootFilesystem: true
       capabilities:
         drop:
