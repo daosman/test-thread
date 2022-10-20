@@ -12,7 +12,7 @@ RUN make clean && make
 
 FROM ${BASE_IMAGE}
 
-COPY --from=builder /build/test-thread /usr/local/bin/
-RUN chmod +x /usr/local/bin/test-thread
+RUN microdnf install -y procps util-linux; microdnf clean all
 
-#ENTRYPOINT ["/usr/local/bin/test-thread"]
+COPY --from=builder /build/test-thread /usr/local/bin/
+RUN setcap 'cap_sys_nice+ep' /usr/local/bin/test-thread

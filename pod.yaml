@@ -9,10 +9,11 @@ spec:
   - name: test-thread
     image: quay.io/dosman/test-thread
     command: ["/usr/local/bin/test-thread"]
+#   command: ["sleep", "infinity"]
     args: []
     imagePullPolicy: Always
     securityContext:
-#     runAsUser: 0
+      runAsUser: 1000 # 0 #
       readOnlyRootFilesystem: true
       capabilities:
         drop:
